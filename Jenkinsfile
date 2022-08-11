@@ -1,14 +1,11 @@
 pipeline {
-    agent { docker { image 'maven:3.8.4-openjdk-11-slim' } }
+    agent {
+        docker { image 'node:16.13.1-alpine' }
+    }
     stages {
-        stage('deploy') {
+        stage('Test') {
             steps {
-                retry(3){
-                    sh 'mvn --version'
-                }
-                timeout(time:3, unit: 'MINUTES'){
-                    sh 'mvn --version'
-                }
+                sh 'node --version'
             }
         }
     }
